@@ -35,21 +35,64 @@ var Users = Vue.component('Users', {
 new Vue ({
     el: "#app",
     data: {
+        countries: countries,
+        country: countries[0],
+        selectedCountryIndex: 0,
+        
+        cities: cities,
+        city: cities[0],
+        selectedCityIndex: 0,
+        
         users: users,
         user: users[0],
         selectedUserIndex: 0,               
+
         search: '',
-        modalVisibility: false,
+
+        locationVisibility: false,
+        fadeVisibility: false,
+        newVisibility: false,
+        editVisibility: false,
     },
     methods: {
+        editContact: function(){
+            this.editVisibility = true; 
+            this.fadeVisibility = true;
+            this.selectedCityIndex = this.filteredUsers[this.selectedUserIndex].id_city;
+            this.selectedCountryIndex = this.cities[this.selectedCityIndex].id_country;
+        },
+        closeModal: function(){
+            this.fadeVisibility = false;
+            this.locationVisibility = false;
+            this.newVisibility = false;
+            this.editVisibility = false;            
+        },
         selectUser: function(index){
             this.user = users[index];           
             this.selectedUserIndex = index;            
+        },
+        selectCountry: function(index){
+            this.country = this.countries[index];
+            this.selectedCountryIndex = index;
+            this.selectedCityIndex = 0;
+        },
+        selectCity: function(index){
+            this.city = this.cities[index];
+            this.selectedCityIndex = index;
+        },
+        removeContact: function(){            
+            this.users.splice(users.indexOf(this.user),1);
+            this.$refs.Users.selectUser(0);
         }
     },
     computed:{
-        filteredUsers() {
-            
+        filteredCities(){
+            const id = this.countries[this.selectedCountryIndex].id;
+            return this.cities.filter(city => {
+                return city.id_country == id;
+            });
+        },
+        filteredUsers(){            
             const search = this.search.toLowerCase();
             const _users =  this.users.filter( user => {
                 const _user = user.firstName.toLowerCase().indexOf(search) > -1 || 
@@ -64,10 +107,7 @@ new Vue ({
         },
         selectedUserCountry(){
             const city = this.selectedUserCity;            
-            return countries[
-                //cities[users[this.selectedUserIndex].id_city]                
-                city.id_country
-                            ];
+            return countries[city.id_country];
         },
         selectedUserPnones(){
             return phones.filter(phone => {                
