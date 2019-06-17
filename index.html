@@ -44,36 +44,16 @@
         </div>
         <hr>
         <div class="row pt-3">
-            <div class="col-md-5 scrollable">                
-                    <!-- v-bind:selected-UserIndex="selectedUserIndex"   -->
-                <Users 
-                    v-bind:filtered-Users="filteredUsers" 
-                                      
-                    v-on:info="selectUser"                    
-                    ></Users>
-                <!-- <ul class="list-group">
-                    <li 
-                        class="list-group-item list-group-item-action pointer"
-                        v-for="(user, index) of filteredUsers"
-                        v-on:click="selectUser(index)"
-                        :class="{'active': selectedUserIndex === index}"
-                        >
-                        <strong>{{user.lastName}}   {{user.firstName}}</strong>
-                    </li>
-                </ul> -->                                               
-            </div>
-                        
-            <!-- <contact-info></contact-info> -->
-            
+            <div class="col-md-5 scrollable">                                    
+                <Users v-bind:filtered-Users="filteredUsers" v-on:info="selectUser"></Users>
+            </div>                                    
             <div class="col-md-7">
                 <div class="card ">
                     <div class="card-body">
                         <h3 class="card-title text-center">Contact Info</h3>
                         <div class="card-text">
-                             <p>Имя      :   <strong>{{filteredUsers[selectedUserIndex].firstName}}</strong></p>
-                            <p>Фамилия  :   <strong>{{filteredUsers[selectedUserIndex].lastName}}</strong></p>
-                                                 
-
+                            <p>Имя      :   <strong>{{filteredUsers[selectedUserIndex].firstName}}</strong></p>
+                            <p>Фамилия  :   <strong>{{filteredUsers[selectedUserIndex].lastName}}</strong></p>                                                 
                             <p>Страна   :   <strong>{{selectedUserCountry.name}}</strong></p>
                             <p>Город    :   <strong>{{selectedUserCity.name}}</strong></p>
                         </div>
