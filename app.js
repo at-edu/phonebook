@@ -55,6 +55,12 @@ new Vue ({
         editVisibility: false,
     },
     methods: {
+        newContact: function(){
+            this.newVisibility = true;
+            this.fadeVisibility = true;
+            this.selectedCityIndex = 0;
+            his.selectedCountryIndex = 0;
+        },
         editContact: function(){
             this.editVisibility = true; 
             this.fadeVisibility = true;

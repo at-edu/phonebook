@@ -98,26 +98,36 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-5  scrollable">
-                            <ul class="list-group col text-center">
-                                <li 
-                                    class="list-group-item list-group-item-action pointer" 
-                                    v-for="(country,index) of countries"
-                                    v-on:click="selectCountry(index)"
-                                    v-bind:class="{'active': selectedCountryIndex === index}"
-                                    >{{country.name}}</li>
-                            </ul>
-                        </div>
-                        <div class="col-md-7">
-                            <ul>
-                                <li 
-                                    class="list-group-item list-group-item-action pointer" 
-                                    v-for="(city,index) of filteredCities"
-                                    v-on:click="selectCity(index)" 
-                                    v-bind:class="{'active': selectedCityIndex == index}"
-                                    >{{city.name}}</li>
-                            </ul>
-                        </div>
+                        <div class="col form-group">
+                            <label for="countryName">Country</label>
+                            <input type="text" class="form-control"  id="countryName" placeholder="countryName" v-model="countries[selectedCountryIndex].name">
+    
+                            <label for="cityName">City</label>
+                            <input type="text" class="form-control"  id="cityName" placeholder="cityName" v-model="cities[selectedCityIndex].name">
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-5  scrollable">
+                                    <ul class="list-group col text-center">
+                                        <li 
+                                            class="list-group-item list-group-item-action pointer" 
+                                            v-for="(country,index) of countries"
+                                            v-on:click="selectCountry(index)"
+                                            v-bind:class="{'active': selectedCountryIndex === index}"
+                                            >{{country.name}}</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-7">
+                                    <ul>
+                                        <li 
+                                            class="list-group-item list-group-item-action pointer" 
+                                            v-for="(city,index) of filteredCities"
+                                            v-on:click="selectCity(index)" 
+                                            v-bind:class="{'active': selectedCityIndex == index}"
+                                            >{{city.name}}</li>
+                                    </ul>
+                                </div>
+                            </div>                            
+                        </div>                                               
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -181,7 +191,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col  from-group scrollable edit-form">
+                        <div class="col  form-group scrollable edit-form">
                             <label for="firstName">Name</label>
                             <input type="text" class="form-control"  id="firstName" placeholder="FirstName" v-model="user.firstName">
 
